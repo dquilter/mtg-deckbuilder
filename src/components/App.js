@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './app.css';
+import Picker from './Picker';
+import '../app.css';
 
 class App extends Component {
   render() {
@@ -23,7 +24,7 @@ class App extends Component {
         </header>
         <div className="app-content">
           <section>
-
+            <Picker />
           </section>
         </div>
       </div>
