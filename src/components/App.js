@@ -3,6 +3,20 @@ import Picker from './Picker';
 import '../app.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      cards: [
+        'test'
+      ]
+    }
+    this.addCard = this.addCard.bind(this);
+  }
+
+  addCard() {
+    console.log('Add card to parent state')
+  }
+
   render() {
     return (
       <div className="app">
@@ -24,7 +38,10 @@ class App extends Component {
         </header>
         <div className="app-content">
           <section>
-            <Picker />
+            <Picker 
+              cardList={this.state.cards}
+              addCard={this.addCard}
+            />
           </section>
         </div>
       </div>

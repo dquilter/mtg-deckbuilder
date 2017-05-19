@@ -22,10 +22,9 @@ class Picker extends Component {
   }
 
   cardList() {
-    console.log(this)
     return (
       <ul>
-        {this.testData().map(function(item) {
+        {this.props.cardList.map(function(item) {
           return (
             <li key={item}>{item}</li>
           )
@@ -37,7 +36,10 @@ class Picker extends Component {
   render() {
     return (
       <div className="picker-container">
-        <input type="text" className="card-input" />
+        <div className="form-row clearfix ">
+          <input type="text" className="card-input" />
+          <button onClick={this.props.addCard}>Add Card</button>
+        </div>
         {this.cardList()}
       </div>
     )
