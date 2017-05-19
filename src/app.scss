@@ -1,9 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Cinzel:900|Libre+Baskerville');
 
-html {
-  font-size: 62.5%;
+@import 'sass/variables';
+@import 'sass/layout';
 
-}
 body {
   font-family: 'Libre Baskerville', serif;  
   font-size: 1.6rem;
@@ -16,27 +15,20 @@ h1, h2, h3, h4 {
 p, li {
 }
 
-.app {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
-}
-
 .app-header {
   background-color: #222;
   height: 150px;
   padding: 20px;
   color: white;
-}
-.app-header ul {
-  padding: 0;
-  list-style-type: none;
-}
-.app-header li {
-  display: inline-block;
-  margin: 0 2rem;
-}
-.app-header a {
-  color: white;
+  ul {
+    padding: 0;
+    list-style-type: none;
+  }
+  li {
+    display: inline-block;
+    margin: 0 2rem;
+  }
+  a {
+    color: white;
+  }
 }
