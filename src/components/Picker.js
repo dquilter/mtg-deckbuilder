@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 
 class Picker extends Component {
+  constructor(props) {
+    super(props);
 
-  testData()  {
+    this.cardList = this.cardList.bind(this);
+    this.testData = this.testData.bind(this);
+  }
+
+  testData() {
     return [
       "White Card",
       "Black Card",
@@ -11,17 +17,28 @@ class Picker extends Component {
       "Blue Bullshit",
     ]
   }
+  testDataEmpty() {
+    return []
+  }
+
+  cardList() {
+    console.log(this)
+    return (
+      <ul>
+        {this.testData().map(function(item) {
+          return (
+            <li key={item}>{item}</li>
+          )
+        })}
+      </ul>
+    )
+  }
 
   render() {
     return (
       <div className="picker-container">
         <input type="text" className="card-input" />
-        <ul>
-          <li>Card Name</li>
-          <li>Card Name</li>
-          <li>Card Name</li>
-          <li>Card Name</li>
-        </ul>
+        {this.cardList()}
       </div>
     )
   }
