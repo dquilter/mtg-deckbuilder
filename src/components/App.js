@@ -13,8 +13,18 @@ class App extends Component {
     this.addCard = this.addCard.bind(this);
   }
 
-  addCard() {
-    console.log('Add card to parent state')
+  addCard(value) {
+    if (!this.state.cards.includes(value)) {
+      this.setState({
+        cards: [
+          ...this.state.cards,
+          value
+        ]
+      })
+      console.log('Added card to parent state')
+    } else {
+      console.log('Items already exists');
+    }
   }
 
   render() {
