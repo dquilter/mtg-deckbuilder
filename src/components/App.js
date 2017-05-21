@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import Picker from './Picker';
 import '../app.css';
+import TestData from './TestData';
 
 class App extends Component {
   constructor(props) {
     super(props);
+    var data = TestData[2];
     this.state = {
-      cards: [
-        'test'
-      ]
+      cards: {
+        "0": data
+      }
     }
     this.addCard = this.addCard.bind(this);
   }
