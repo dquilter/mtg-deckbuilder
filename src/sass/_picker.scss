@@ -50,6 +50,10 @@
     &:active {
       outline: 0;
     }
+    &[disabled] {
+      border-color: $grey;
+      background-color: $grey;
+    }
   }
   .search-results {
     position: absolute;

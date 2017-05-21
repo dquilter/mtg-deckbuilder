@@ -8,45 +8,52 @@ class PickerForm extends Component {
     super(props);
     this.state = {
       inputVal: '',
-      searchResults: null
+      searchResults: null,
+      selectedCard: null
     }    
 
+    this.isAddDisabled = this.isAddDisabled.bind(this);
     this.updateInputVal = this.updateInputVal.bind(this);
     this.addCard = this.addCard.bind(this);
     this.getCard = this.getCard.bind(this);
     this.testSearchReady = this.testSearchReady.bind(this);
     this.selectCard = this.selectCard.bind(this);
+    this.searchResults = this.searchResults.bind(this);
+  }
+
+  isAddDisabled() {
+    let val = this.state.selectedCard ? '' : 'disabled';
+    return {
+      'disabled': val
+    };
   }
 
   updateInputVal(evt) {
+    // Update selected card
+    this.setState({
+      selectedCard: null
+    })
+
+    // Set input val
     this.setState({
       inputVal: evt.target.value
     })
 
+    // Test if user finished typing
     this.testSearchReady(evt.target.value);
   }
 
-  addCard() {
-    this.props.addCard(this.state.inputVal);
-    // let results = this.getCard();
-    // this.props.addCard(results[0]);
-  }
-
   searchTimeout = undefined;
-  
   testSearchReady(value) {
     clearTimeout(this.searchTimeout);
     this.searchTimeout = setTimeout(function() {
-      this.getCard(value);
+      if(value.length > 0) {
+        this.getCard(value);
+      }
     }.bind(this), 800);
   }
 
   getCard(value) {
-    // Mtg.card.find(3)
-    // .then(result => {
-    //     console.log(result.card) // "Black Lotus"
-    // });
-
     // Mtg.card.where({ name: 'Fatal Push' })
     // .then(cards => {
     //     console.log(cards) // "Squee, Goblin Nabob"
@@ -67,7 +74,6 @@ class PickerForm extends Component {
         this.setState({
           searchResults: cards
         })
-        console.log(this.state)
     })
   }
 
@@ -75,7 +81,8 @@ class PickerForm extends Component {
     let resultList = [];
     for (var key in this.state.searchResults) {
       let result = this.state.searchResults[key];
-      resultList.push(<a href="#" key={key} onClick={this.selectCard}>{result.name}</a>)
+      let onClick = (evt) => this.selectCard(evt, result);
+      resultList.push(<a href="#" key={key} onClick={onClick}>{result.name}</a>)
     }
     var open = resultList.length > 0 ? 'is-open' : '';
     return (
@@ -85,12 +92,28 @@ class PickerForm extends Component {
     )
   }
 
-  selectCard() {
+  // Selects card from results list
+  selectCard(evt, result) {
+    evt.preventDefault();
 
+    // Update state
+    this.setState({
+      inputVal: result.name,
+      selectedCard: result,
+      searchResults: null
+    });
+    console.log(this.state)
   }
 
+  // Adds card to deck
+  addCard() {
+    this.props.addCard(this.state.inputVal);
+    // let results = this.getCard();
+    // this.props.addCard(results[0]);
+  }
   
   render() {
+    let isAddDisabled = this.isAddDisabled();
     return (
       <div className="picker-form clearfix ">
         <input 
@@ -99,7 +122,12 @@ class PickerForm extends Component {
           value={this.state.inputVal}
           onChange={this.updateInputVal}
         />
-        <button onClick={this.addCard}>Add Card</button>
+        <button 
+          onClick={this.addCard}
+          {...isAddDisabled}
+        >
+          Add Card
+        </button>
         {this.searchResults()}
       </div>      
     )
