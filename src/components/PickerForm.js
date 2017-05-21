@@ -70,7 +70,7 @@ class PickerForm extends Component {
     // return TestData;
     Mtg.card.where({ name: value })
     .then(cards => {
-        console.log(cards) // "Squee, Goblin Nabob"
+        console.log(cards);
         this.setState({
           searchResults: cards
         })
@@ -107,9 +107,7 @@ class PickerForm extends Component {
 
   // Adds card to deck
   addCard() {
-    this.props.addCard(this.state.inputVal);
-    // let results = this.getCard();
-    // this.props.addCard(results[0]);
+    this.props.addCard(this.state.selectedCard);
   }
   
   render() {

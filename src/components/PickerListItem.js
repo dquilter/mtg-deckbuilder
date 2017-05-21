@@ -6,12 +6,40 @@ class PickerListItem extends Component {
     super(props);
     
     this.mana = this.mana.bind(this);
+    this.renderMana = this.renderMana.bind(this);
   }
 
   mana() {
     return (
-      <span className="mana-cost">{this.props.card.manaCost}</span>  
+      <div className="mana-cost">{this.renderMana(this.props.card.manaCost)}</div>  
     )
+  }
+
+  manaRef = {
+    'W': 'white',
+    'B': 'black',
+    'R': 'red',
+    'G': 'green',
+    'U': 'blue'
+  }
+
+  renderMana(val) {
+    let tempArray = val.split('}');
+    let finalArray = [];
+    tempArray.map(function(val) {
+      if (val.length > 0) {
+        let thisVal = val.replace('{', '');
+        console.log(thisVal)
+        if (isNaN(parseInt(thisVal))) {
+          finalArray.push(<span key={thisVal} className={`mana-symbol mana-symbol-${this.manaRef[thisVal]}`}></span>)
+        } else {
+          console.log('isInteger')
+          finalArray.push(<span key={thisVal} className={`mana-symbol`}>{thisVal}</span>)
+        }
+      }
+    }.bind(this));
+    
+    return finalArray;
   }
 
   render() {

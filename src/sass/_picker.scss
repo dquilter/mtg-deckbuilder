@@ -12,6 +12,34 @@
   .mana-cost {
     float: right;
   }
+  .mana-symbol {
+    float: left;
+    display: block;
+    width: 1.8rem;
+    height: 1.8rem;
+    margin-left: 0.6rem;
+    border: 1px solid $grey;
+    background-color: #DDD;
+    font-size: 1.2rem;
+    text-align: center;
+    line-height: 1.6rem;
+    border-radius: 50%;
+  }
+  .mana-symbol-white {
+    background-color: white;
+  }
+  .mana-symbol-red {
+    background-color: red;
+  }
+  .mana-symbol-black {
+    background-color: black;
+  }
+  .mana-symbol-green {
+    background-color: green;
+  }
+  .mana-symbol-blue {
+    background-color: blue;
+  }
 }
 
 .picker-form {

@@ -12,8 +12,8 @@ class Picker extends Component {
 
   cardList() {
     let result = [];
-    for (var key in this.props.cardList) {
-      let card = this.props.cardList[key];
+    for (var objKey in this.props.cardList) {
+      let card = this.props.cardList[objKey];
       console.log(this.props.cardList[card])
       result.push(
         <PickerListItem key={card.id} card={card} />
