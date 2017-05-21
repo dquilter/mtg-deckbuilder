@@ -3,17 +3,13 @@ import PropTypes from 'prop-types';
 import Mtg from 'mtgsdk';
 import TestData from './TestData';
 import PickerListItem from './PickerListItem';
+import PickerForm from './PickerForm';
 
 class Picker extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      inputVal: ''
-    }
 
     this.cardList = this.cardList.bind(this);
-    this.updateInputVal = this.updateInputVal.bind(this);
-    this.addCard = this.addCard.bind(this);
     this.getCard = this.getCard.bind(this);
   }
 
@@ -48,7 +44,7 @@ class Picker extends Component {
       let card = this.props.cardList[key];
       console.log(this.props.cardList[card])
       result.push(
-        <PickerListItem card={card} />
+        <PickerListItem key={card.id} card={card} />
       );
     }
     return (
@@ -58,31 +54,12 @@ class Picker extends Component {
     )
   }
 
-  updateInputVal(evt) {
-    console.log(evt.target.value)
-    this.setState({
-      inputVal: evt.target.value
-    })
-  }
-
-  addCard() {
-    // this.props.addCard(this.state.inputVal);
-    let results = this.getCard();
-    this.props.addCard(results[0]);
-  }
-
   render() {
     return (
       <div className="picker-container">
-        <div className="form-row clearfix ">
-          <input 
-            type="text" 
-            className="card-input" 
-            value={this.state.inputVal}
-            onChange={this.updateInputVal}
-          />
-          <button onClick={this.addCard}>Add Card</button>
-        </div>
+        <PickerForm 
+          addCard={this.props.addCard}
+        />
         {this.cardList()}
       </div>
     )

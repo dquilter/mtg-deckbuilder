@@ -16,7 +16,7 @@ class PickerListItem extends Component {
 
   render() {
     return (
-      <li key={this.props.card.id}>
+      <li>
         {this.props.card.name}
         {this.mana()}
       </li>
@@ -25,7 +25,7 @@ class PickerListItem extends Component {
 }
 
 PickerListItem.PropTypes = {
-
+  card: PropTypes.object.isRequired
 }
 
 export default PickerListItem;

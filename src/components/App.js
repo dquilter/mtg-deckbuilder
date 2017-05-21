@@ -9,19 +9,21 @@ class App extends Component {
     var data = TestData[2];
     this.state = {
       cards: {
-        "0": data
+        "Fatal Push": data
       }
     }
+
     this.addCard = this.addCard.bind(this);
   }
 
   addCard(value) {
-    if (!this.state.cards.includes(value)) {
+    if (!Object.keys(this.state.cards).includes(value)) {
       this.setState({
-        cards: [
+        cards: {
           ...this.state.cards,
-          value
-        ]
+          [value]: value
+        }
+        
       })
       console.log('Added card to parent state')
     } else {
