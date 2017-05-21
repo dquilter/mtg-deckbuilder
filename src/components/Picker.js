@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import Mtg from 'mtgsdk';
 
 class Picker extends Component {
   constructor(props) {
@@ -11,6 +13,13 @@ class Picker extends Component {
     this.testData = this.testData.bind(this);
     this.updateInputVal = this.updateInputVal.bind(this);
     this.addCard = this.addCard.bind(this);
+  }
+
+  getCard() {
+    Mtg.card.find(3)
+    .then(result => {
+        console.log(result.card) // "Black Lotus"
+    })
   }
 
   testData() {
@@ -66,6 +75,11 @@ class Picker extends Component {
       </div>
     )
   }
+}
+
+Picker.PropTypes = {
+  cardList: PropTypes.object.isRequired,
+  addCard: PropTypes.func.isRequired
 }
 
 export default Picker;
