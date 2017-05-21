@@ -1,9 +1,26 @@
-.picker-container {
+.picker-table {
+  ul {
+    padding: 0;
+    list-style-type: none;
+  }
+  li {
+    padding: 1.5rem 1rem;
+    &:nth-child(odd) {
+      background-color: #EFEFEF;
+    }
+  }
+  .mana-cost {
+    float: right;
+  }
+}
+
+.picker-form {
+  position: relative;
+  margin: 0 0 2rem;
   input[type=text] {
     float: left;
     width: 70%;
     padding: 2rem;
-    margin: 0 0 2rem;
     border: 1px solid $borderColor;
     font-size: 1.6rem;
     &:focus,
@@ -34,20 +51,24 @@
       outline: 0;
     }
   }
-  ul {
-    padding: 0;
-    list-style-type: none;
-  }
-  li {
-    padding: 1.5rem 1rem;
-    &:nth-child(odd) {
-      background-color: #EFEFEF;
+  .search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    &.is-open {
+      border: 1px solid black;
+      border-top-width: 0;
     }
-  }
-  .form-row {
-
-  }
-  .mana-cost {
-    float: right;
+    a {
+      display: block;
+      width: 100%;
+      padding: 1.5rem 1rem;
+      background-color: $white;
+      border-bottom: 1px solid $grey;
+      &:last-child{
+        border-bottom-width: 0;
+      }
+    }
   }
 }
