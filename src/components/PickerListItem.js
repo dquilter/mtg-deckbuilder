@@ -29,7 +29,7 @@ class PickerListItem extends Component {
     tempArray.map(function(val) {
       if (val.length > 0) {
         let thisVal = val.replace('{', '');
-        if (isNaN(parseInt(thisVal))) {
+        if (isNaN(parseInt(thisVal, 10))) {
           finalArray.push(<span key={thisVal} className={`mana-symbol mana-symbol-${this.manaRef[thisVal]}`}></span>)
         } else {
           finalArray.push(<span key={thisVal} className={`mana-symbol`}>{thisVal}</span>)

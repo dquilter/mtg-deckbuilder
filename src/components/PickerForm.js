@@ -85,7 +85,7 @@ class PickerForm extends Component {
     for (var key in this.state.searchResults) {
       let result = this.state.searchResults[key];
       let onClick = (evt) => this.selectCard(evt, result);
-      resultList.push(<a href="#" key={key} onClick={onClick}>{result.name}</a>)
+      resultList.push(<a href="" key={key} onClick={onClick}>{result.name}</a>)
     }
     if (resultList.length > 0) {
       return (
