@@ -78,18 +78,28 @@ class PickerForm extends Component {
   }
 
   searchResults() {
+    if (this.state.inputVal.length === 0) {
+      return null;
+    }
     let resultList = [];
     for (var key in this.state.searchResults) {
       let result = this.state.searchResults[key];
       let onClick = (evt) => this.selectCard(evt, result);
       resultList.push(<a href="#" key={key} onClick={onClick}>{result.name}</a>)
     }
-    var open = resultList.length > 0 ? 'is-open' : '';
-    return (
-      <div className={`search-results ${open}`}>
-        {resultList}
-      </div>
-    )
+    if (resultList.length > 0) {
+      return (
+        <div className="search-results is-open">
+          {resultList}
+        </div>
+      )
+    } else {
+      return (
+        <div className="search-results is-open">
+          <span>No results found</span>
+        </div>
+      )
+    }
   }
 
   // Selects card from results list

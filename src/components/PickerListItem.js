@@ -29,11 +29,9 @@ class PickerListItem extends Component {
     tempArray.map(function(val) {
       if (val.length > 0) {
         let thisVal = val.replace('{', '');
-        console.log(thisVal)
         if (isNaN(parseInt(thisVal))) {
           finalArray.push(<span key={thisVal} className={`mana-symbol mana-symbol-${this.manaRef[thisVal]}`}></span>)
         } else {
-          console.log('isInteger')
           finalArray.push(<span key={thisVal} className={`mana-symbol`}>{thisVal}</span>)
         }
       }
